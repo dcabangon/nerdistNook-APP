@@ -1,3 +1,4 @@
-Dependencies
+Initialize
 
 - npm install -g @vue/cli
+- yarn add bootstrap
