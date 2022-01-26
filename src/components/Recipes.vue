@@ -6,12 +6,14 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
+                    <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="r in recipes" v-bind:key="r._id">
         <td>{{ r.bookName }}</td>
         <td>{{ r.publisher }}</td>
+                <td><button class="btn btn-primary">Edit</button></td>
         </tr>
       </tbody>
     </table>
