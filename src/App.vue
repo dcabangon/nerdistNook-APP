@@ -14,8 +14,8 @@
     <!-- END OF NAVBAR -->
     <div>
       <Recipes v-if="page ==='recipes'" />
-      <AddRecipe v-if="page ==='add'" />
-    </div>
+      <AddRecipe v-if="page ==='add'" v-on:new-entry-created="onNewEntryCreated"/>
+    </div>  
   </div>
 </template>
 
@@ -37,12 +37,16 @@ export default {
   },
 
   methods: {
-    "goRecipes": function () {
+    'goRecipes': function () {
       this.page = "recipes";
     },
-    "goAddRecipe": function () {
+    'goAddRecipe': function () {
       this.page = "add";
     },
+    'onNewEntryCreated': function(){
+      this.page="recipes";
+    }
+
   },
 };
 </script>
