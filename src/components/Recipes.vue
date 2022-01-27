@@ -1,19 +1,22 @@
 <template>
   <div>
-    <h1>All Recipe</h1>
+    <h1>Recipes</h1>
     <table class="table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Title</th>
-                    <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="r in recipes" v-bind:key="r._id">
-        <td>{{ r.bookName }}</td>
-        <td>{{ r.publisher }}</td>
-                <td><button class="btn btn-primary">Edit</button></td>
+          <td>{{ r.bookName }}</td>
+          <td>{{ r.publisher }}</td>
+          <td>
+            <button v-on:click="update(r._id)"
+            class="btn btn-primary sm ">Edit </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -34,6 +37,11 @@ export default {
     return {
       recipes: [],
     };
+  },
+  methods: {
+    'update':function(entryId) {
+      this.$emit('update-entry', entryId);
+    },
   },
 };
 </script>
