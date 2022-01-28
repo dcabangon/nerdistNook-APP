@@ -1,71 +1,71 @@
+
 <template>
-  <div class="container-fluid">
-    <!-- NAVBAR -->
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <button
-          v-on:click="goRecipes"
-          class="nav-link active"
-          aria-current="page"
-        >
-          Recipes
-        </button>
-      </li>
-      <li class="nav-item">
-        <button v-on:click="goAddRecipe" class="nav-link">Add new</button>
-      </li>
-    </ul>
-    <!-- END OF NAVBAR -->
-    <div>
-      <Recipes v-if="page === 'recipes'" v-on:update-entry="editEntry" />
-      
-      <AddRecipe
-        v-if="page === 'add'"
-        v-on:new-entry-created="onNewEntryCreated"/>
-      
-      <EditEntry
-        v-if="page === 'edit'"
-        v-bind:entryId="entryBeingEdited"/>
-    </div>
-  </div>
-</template>   
+  <div>
+   <div class="container-fluid">
+     <!-- navbar -->
+     <ul class="nav nav-tabs">
+       <li class="nav-item">
+         <button v-on:click="goRecipes" class="nav-link active" aria-current="page">Recipes</button>
+       </li>
+       <li class="nav-item">
+         <button v-on:click="goAddRecipe" class="nav-link">Add New</button>
+       </li>
+        <li class="nav-item">
+         <button v-on:click="goAboutUs" class="nav-link">About Us</button>
+       </li>
+     </ul>
+     <!-- end navbar -->
+     
+     <div>
+       <Recipes v-if="page==='recipes'" v-on:update-recipe="editRecipe"/>
+       <AddRecipe v-if="page==='add'" v-on:new-recipe-created="onNewRecipeCreated"/>
+       <AboutUs v-if="page==='about-us'"/>
+       <EditRecipe v-if="page==='edit'" v-bind:recipeId="recipeBeingEdited" v-on:recipe-updated="onRecipeUpdated"/>
+       
+     </div>
+   </div>
+ </div>
+</template>
 
 <script>
-import AddRecipe from "@/components/AddRecipe";
-import Recipes from "@/components/Recipes";
-import EditEntry from "@/components/EditEntry";
-
+import AddRecipe from "@/components/AddRecipe"
+import Recipes from "@/components/Recipes"
+import AboutUs from "@/components/AboutUs"
+import EditRecipe from "@/components/EditRecipe"
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    Recipes,
-    AddRecipe,
-    EditEntry
+     Recipes, AddRecipe, AboutUs, EditRecipe
   },
- 
-  data: function () {
+  data: function() {
     return {
-      'page':'recipes',
-      'entryBeingEdited': 0,
-    };
+      'page': 'recipes',
+      'recipeBeingEdited': 0
+    }
   },
-
-  methods: {
-    'goRecipes': function () {
-      this.page = "recipes";
+  methods:{
+    'goRecipes': function() {
+      this.page = "recipes"
     },
-    'goAddRecipe': function () {
-      this.page = "add";
+    'goAddRecipe': function() {
+      this.page = "add"
     },
-    'onNewEntryCreated': function () {
-      this.page = "recipes";
+    'goAboutUs': function() {
+      this.page= "about-us"
     },
-    'editEntry': function (entryId) {
-      this.page = "edit";
-      this.entryBeingEdited = entryId;
+    'onNewRecipeCreated':function() {
+      this.page="recipes"
     },
-  },  
-};
+    'editRecipe': function(recipeId) {
+      this.page="edit";
+      this.recipeBeingEdited = recipeId;
+      
+    },
+    'onRecipeUpdated':function() {
+      this.page="recipes"
+    }
+  }
+}
 </script>
 
 <style>
