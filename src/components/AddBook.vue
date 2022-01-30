@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add Recipe</h1>
+        <h1>Add Book</h1>
         <div>
             <label>Book Name</label>
             <input type="text" v-model="bookName" class="form-control"/>
@@ -33,7 +33,7 @@ export default {
                 'bookName': this.bookName,
                 'publisher': this.publisher
             });
-            this.$emit('new-recipe-created')
+            this.$emit('new-book-created')
         }
     }
 }

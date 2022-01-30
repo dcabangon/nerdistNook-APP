@@ -5,10 +5,10 @@
      <!-- navbar -->
      <ul class="nav nav-tabs">
        <li class="nav-item">
-         <button v-on:click="goRecipes" class="nav-link active" aria-current="page">Recipes</button>
+         <button v-on:click="goBooks" class="nav-link active" aria-current="page">Books</button>
        </li>
        <li class="nav-item">
-         <button v-on:click="goAddRecipe" class="nav-link">Add New</button>
+         <button v-on:click="goAddBook" class="nav-link">Add New</button>
        </li>
         <li class="nav-item">
          <button v-on:click="goAboutUs" class="nav-link">About Us</button>
@@ -17,10 +17,10 @@
      <!-- end navbar -->
      
      <div>
-       <Recipes v-if="page==='recipes'" v-on:update-recipe="editRecipe"/>
-       <AddRecipe v-if="page==='add'" v-on:new-recipe-created="onNewRecipeCreated"/>
+       <Books v-if="page==='books'" v-on:update-book="editBook"/>
+       <AddBook v-if="page==='add'" v-on:new-book-created="onNewBookCreated"/>
        <AboutUs v-if="page==='about-us'"/>
-       <EditRecipe v-if="page==='edit'" v-bind:recipeId="recipeBeingEdited" v-on:recipe-updated="onRecipeUpdated"/>
+       <EditBook v-if="page==='edit'" v-bind:bookId="bookBeingEdited" v-on:book-updated="onBookUpdated"/>
        
      </div>
    </div>
@@ -28,41 +28,41 @@
 </template>
 
 <script>
-import AddRecipe from "@/components/AddRecipe"
-import Recipes from "@/components/Recipes"
+import AddBook from "@/components/AddBook"
+import Books from "@/components/Books"
 import AboutUs from "@/components/AboutUs"
-import EditRecipe from "@/components/EditRecipe"
+import EditBook from "@/components/EditBook"
+
 export default {
   name: 'App',
   components: {
-     Recipes, AddRecipe, AboutUs, EditRecipe
+     Books, AddBook, AboutUs, EditBook
   },
   data: function() {
     return {
-      'page': 'recipes',
-      'recipeBeingEdited': 0
+      'page': 'books',
+      'bookBeingEdited': 0
     }
   },
   methods:{
-    'goRecipes': function() {
-      this.page = "recipes"
+    'goBooks': function() {
+      this.page = "books"
     },
-    'goAddRecipe': function() {
+    'goAddBook': function() {
       this.page = "add"
     },
     'goAboutUs': function() {
       this.page= "about-us"
     },
-    'onNewRecipeCreated':function() {
-      this.page="recipes"
+    'onNewBookCreated':function() {
+      this.page="books"
     },
-    'editRecipe': function(recipeId) {
+    'editBook': function(bookId) {
       this.page="edit";
-      this.recipeBeingEdited = recipeId;
-      
+      this.bookBeingEdited = bookId;
     },
-    'onRecipeUpdated':function() {
-      this.page="recipes"
+    'onBookUpdated':function() {
+      this.page="books"
     }
   }
 }

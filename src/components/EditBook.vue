@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Edit Recipe</h1>
+    <h1>Edit Book</h1>
     <div>
       <label>Book Name</label>
       <input type="text" v-model="bookName" class="form-control" />
@@ -14,7 +14,10 @@
         v-model="publisher"
       />
     </div>
-    <button v-on:click="updateRecipe" class="my-3">Update</button>
+    <button v-on:click="updateBook" class="my-3">Update</button>
+    <button v-on:click="deleteBook(b._id)" class="btn btn-danger btn-sm">
+      Delete
+    </button>
   </div>
 </template>
 
@@ -32,7 +35,7 @@ export default {
     };
   },
   created: async function () {
-    let response = await axios.get(BASE_API_URL + "books/" + this.recipeId);
+    let response = await axios.get(BASE_API_URL + "books/" + this.bookId);
     console.log(response.data);
     let book = response.data.book;
     this.bookName = book.bookName;
@@ -40,17 +43,19 @@ export default {
     this.id = book.id;
   },
 
-  props: ["recipeId"],
+  props: ["bookId"],
 
   methods: {
-    "updateRecipe": async function () {
-      await axios.patch(BASE_API_URL + "books/" + this.recipeId, {
-        'bookName': this.bookName,
-        'publisher': this.publisher,
+    updateBook: async function () {
+      await axios.patch(BASE_API_URL + "books/" + this.bookId, {
+        bookName: this.bookName,
+        publisher: this.publisher,
       });
-
-      this.$emit('recipe-updated');
+      this.$emit("book-updated");
     },
+  },
+  deleteBook: function () {
+    this.$emit("delete-book", this.book._id);
   },
 };
 </script>
