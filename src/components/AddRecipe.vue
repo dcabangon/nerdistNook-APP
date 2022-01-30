@@ -17,7 +17,7 @@
 </template>
 
 <script>
-const BASE_API_URL="https://3000-dcabangon-nerdistnookapi-xwxhxz2ave4.ws-us29.gitpod.io/"
+const BASE_API_URL="https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us29.gitpod.io/"
 import axios from 'axios'
 export default {
     data:function(){
