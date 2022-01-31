@@ -33,7 +33,6 @@ export default {
   },
   created: async function () {
     let response = await axios.get(BASE_API_URL + "books/" + this.bookId);
-    console.log(response.data);
     let book = response.data.book;
     this.bookName = book.bookName;
     this.publisher = book.publisher;
@@ -50,9 +49,6 @@ export default {
       });
       this.$emit("book-updated");
     },
-  },
-  deleteBook: function () {
-    this.$emit("delete-book", this.book._id);
   },
 };
 </script>
