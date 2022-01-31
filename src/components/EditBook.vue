@@ -15,9 +15,6 @@
       />
     </div>
     <button v-on:click="updateBook" class="my-3">Update</button>
-    <button v-on:click="deleteBook(b._id)" class="btn btn-danger btn-sm">
-      Delete
-    </button>
   </div>
 </template>
 

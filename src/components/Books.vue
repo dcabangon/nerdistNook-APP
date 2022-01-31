@@ -8,6 +8,7 @@
           <th>Book Name</th>
           <th>Publisher</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,14 @@
           <td>
             <button v-on:click="update(b._id)" class="btn btn-primary btn-sm">
               Edit
+            </button>
+          </td>
+          <td>
+            <button
+              v-on:click="deleteBook(b._id)"
+              class="btn btn-danger btn-sm"
+            >
+              Delete
             </button>
           </td>
         </tr>
@@ -46,21 +55,24 @@ export default {
     update: function (bookId) {
       this.$emit("update-book", bookId);
     },
+
+    deleteBook: function (bookId) {
+      this.books.splice(bookId, 1);
+    },
   },
 
-
-  deleteBook: async function (bookId) {
-    if (
-      confirm(
-        "Are you sure you want to delete this outfit? Press OK to confirm"
-      )
-    ) {
-      // call delete api
-      await axios.deleteBook(BASE_API_URL + "books/" + bookId);
-      // refresh data list
-      this.refreshData();
-      alert("Delete Outfit Successful!");
-    }
-  },
+  // deleteBook: async function (bookId) {
+  //   if (
+  //     confirm(
+  //       "Are you sure you want to delete this outfit? Press OK to confirm"
+  //     )
+  //   ) {
+  //     // call delete api
+  //     await axios.deleteBook(BASE_API_URL + "books/" + bookId);
+  //     // refresh data list
+  //     this.refreshData();
+  //     alert("Delete Outfit Successful!");
+  //   }
+  // },
 };
 </script>
