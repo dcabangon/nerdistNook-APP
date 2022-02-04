@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div>
+    <div class="col-sm-4">
       <b-card no-body class="overflow-hidden" style="max-width: 540px">
         <b-row no-gutters>
           <b-col>
@@ -33,7 +32,6 @@
         </b-row>
       </b-card>
     </div>
-  </div>
 </template>
 
  <script>

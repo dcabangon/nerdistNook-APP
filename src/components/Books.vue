@@ -2,8 +2,9 @@
   <div>
     <!-- <h1>Books</h1> -->
     <section class="books">
-      <BookCard
-      v-on:delete-book="deleteBook"
+      <div class="row">
+        <BookCard
+        v-on:delete-book="deleteBook"
         v-on:update-book="update"
         v-for="book in books"
         v-bind:key="book._id"
@@ -13,6 +14,7 @@
         :book="book"
         :imageLink="book.imageLink"
       />
+      </div>
     </section>
   </div>
 </template>

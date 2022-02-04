@@ -4,7 +4,7 @@
     <div>
       <!-- NAVBAR -->
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#">NERDISTNOOK</b-navbar-brand>
+        <b-navbar-brand class="header-padding" href="#">NERDISTNOOK</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -23,25 +23,11 @@
               >About</b-nav-item
             >
           </b-navbar-nav>
-
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input
-                size="sm"
-                class="mr-sm-2"
-                placeholder="Search"
-              ></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                >Search</b-button
-              >
-            </b-nav-form>
-          </b-navbar-nav>
         </b-collapse>
       </b-navbar>
       <!-- END OF NAV BAR -->
-
-      <div>
+      <div class="container">
+        <Search class="search-margin" v-if="page != 'add' && page != 'edit'"/>
         <Books v-if="page === 'books'" v-on:update-book="editBook" />
         <AddBook
           v-if="page === 'add'"
@@ -63,6 +49,7 @@ import AddBook from "@/components/AddBook";
 import Books from "@/components/Books";
 import AboutUs from "@/components/AboutUs";
 import EditBook from "@/components/EditBook";
+import Search from "@/components/Search";
 
 export default {
   name: "App",
@@ -71,6 +58,7 @@ export default {
     AddBook,
     AboutUs,
     EditBook,
+    Search,
   },
   data: function () {
     return {
@@ -102,5 +90,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.search-margin {
+margin-top: 20px
+}
+
+.header-padding{
+  padding-left:10px
+}
 </style>
