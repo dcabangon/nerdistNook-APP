@@ -3,7 +3,7 @@
   <div>
     <div>
       <!-- NAVBAR -->
-      <b-navbar toggleable="lg" type="dark" style="background: green">
+      <b-navbar toggleable="lg" type="dark" style="background: red">
         <b-navbar-brand class="header-padding" href="#">NERDISTNOOK</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -27,7 +27,6 @@
       </b-navbar>
       <!-- END OF NAV BAR -->
       <b-container>
-        
         <Books v-if="page === 'books'" v-on:update-book="editBook" ref="bookComponent"/>
         <AddBook
           v-if="page === 'add'"
