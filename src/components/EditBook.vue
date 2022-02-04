@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="margin-form">
     <h1>Edit Book</h1>
     <div>
       <label>Book Name</label>
@@ -13,6 +13,14 @@
       <label>Image Link</label>
       <input type="text" class="form-control" v-model="imageLink" />
     </div>
+    <div>
+      <label>Rating</label>
+      <b-form-rating
+        v-model="rating"
+        variant="warning"
+        class="mb-2"
+      ></b-form-rating>
+    </div>
 
     <button v-on:click="updateBook" class="my-3">Update</button>
   </div>
@@ -20,8 +28,7 @@
 
 <script>
 // BE SURE TO CHANGE THE API TO THE HEROKU VERSION WHEN YOU DEPLOYED YOUR VUE PROJECT
-const BASE_API_URL =
-  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us30.gitpod.io/";
+import { BASE_API_URL } from "@/env-vars";
 import axios from "axios";
 export default {
   data: function () {
@@ -30,6 +37,7 @@ export default {
       bookName: "",
       publisher: "",
       imageLink: "",
+      rating:""
     };
   },
   created: async function () {
@@ -39,6 +47,7 @@ export default {
     this.publisher = book.publisher;
     this.id = book.id;
     this.imageLink = book.imageLink;
+    this.rating = book.rating;
   },
 
   props: ["bookId"],
@@ -49,9 +58,20 @@ export default {
         bookName: this.bookName,
         publisher: this.publisher,
         imageLink: this.imageLink,
+        rating: this.rating,
       });
       this.$emit("book-updated");
     },
   },
 };
 </script>
+
+<style scoped>
+
+.margin-form{
+  margin-top: 50px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+</style>

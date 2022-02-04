@@ -3,7 +3,7 @@
   <div>
     <div>
       <!-- NAVBAR -->
-      <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar toggleable="lg" type="dark" style="background: green">
         <b-navbar-brand class="header-padding" href="#">NERDISTNOOK</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -26,9 +26,9 @@
         </b-collapse>
       </b-navbar>
       <!-- END OF NAV BAR -->
-      <div class="container">
-        <Search class="search-margin" v-if="page != 'add' && page != 'edit'"/>
-        <Books v-if="page === 'books'" v-on:update-book="editBook" />
+      <b-container>
+        
+        <Books v-if="page === 'books'" v-on:update-book="editBook" ref="bookComponent"/>
         <AddBook
           v-if="page === 'add'"
           v-on:new-book-created="onNewBookCreated"
@@ -39,7 +39,7 @@
           v-bind:bookId="bookBeingEdited"
           v-on:book-updated="onBookUpdated"
         />
-      </div>
+      </b-container>
     </div>
   </div>
 </template>
@@ -49,7 +49,6 @@ import AddBook from "@/components/AddBook";
 import Books from "@/components/Books";
 import AboutUs from "@/components/AboutUs";
 import EditBook from "@/components/EditBook";
-import Search from "@/components/Search";
 
 export default {
   name: "App",
@@ -58,7 +57,6 @@ export default {
     AddBook,
     AboutUs,
     EditBook,
-    Search,
   },
   data: function () {
     return {
@@ -69,6 +67,7 @@ export default {
   methods: {
     goBooks: function () {
       this.page = "books";
+      this.$refs.bookComponent.getBooks();
     },
     goAddBook: function () {
       this.page = "add";
@@ -91,10 +90,6 @@ export default {
 </script>
 
 <style scoped>
-
-.search-margin {
-margin-top: 20px
-}
 
 .header-padding{
   padding-left:10px

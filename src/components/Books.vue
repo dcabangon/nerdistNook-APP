@@ -2,37 +2,42 @@
   <div>
     <!-- <h1>Books</h1> -->
     <section class="books">
-      <div class="row">
-        <BookCard
-        v-on:delete-book="deleteBook"
-        v-on:update-book="update"
-        v-for="book in books"
-        v-bind:key="book._id"
-        :id="book._id"
-        :name="book.bookName"
-        :publisher="book.publisher"
-        :book="book"
-        :imageLink="book.imageLink"
+      <Search
+        class="search-margin"
+        v-if="page != 'add' && page != 'edit'"
+        v-on:search-book="search"
       />
-      </div>
+      <b-row>
+        <BookCard
+          v-on:delete-book="deleteBook"
+          v-on:update-book="update"
+          v-for="book in books"
+          v-bind:key="book._id"
+          :id="book._id"
+          :name="book.bookName"
+          :publisher="book.publisher"
+          :book="book"
+          :imageLink="book.imageLink"
+          :rating="book.rating"
+        />
+      </b-row>
     </section>
   </div>
 </template>
 
 <script>
-const BASE_API_URL =
-  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us30.gitpod.io/";
+import { BASE_API_URL } from "@/env-vars";
 
 import axios from "axios";
 import BookCard from "@/components/BookCard.vue";
+import Search from "@/components/Search.vue";
 
 export default {
   name: "Books",
-  components: { BookCard },
+  components: { BookCard, Search },
 
   created: async function () {
-    let response = await axios.get(BASE_API_URL + "books");
-    this.books = response.data;
+    this.getBooks();
   },
 
   data: function () {
@@ -62,6 +67,23 @@ export default {
         alert("Delete Outfit Successful!");
       }
     },
+    search: async function (bookName) {
+      let response = await axios.get(
+        BASE_API_URL + "books?bookName=" + bookName
+      );
+      this.books = response.data;
+      //console.log(bookName)
+    },
+    getBooks: async function () {
+      let response = await axios.get(BASE_API_URL + "books");
+      this.books = response.data;
+    },
   },
 };
 </script>
+
+<style scoped>
+.search-margin {
+  margin-top: 20px;
+}
+</style>
