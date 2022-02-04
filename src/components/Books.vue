@@ -1,46 +1,33 @@
 <template>
   <div>
-    <h1>Books</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Book Name</th>
-          <th>Publisher</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="b in books" v-bind:key="b._id">
-          <td>{{ b._id }}</td>
-          <td>{{ b.bookName }}</td>
-          <td>{{ b.publisher }}</td>
-          <td>
-            <button v-on:click="update(b._id)" class="btn btn-primary btn-sm">
-              Edit
-            </button>
-          </td>
-          <td>
-            <button
-              v-on:click="deleteBook(b._id)"
-              class="btn btn-danger btn-sm"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- <h1>Books</h1> -->
+    <section class="books">
+      <BookCard
+      v-on:delete-book="deleteBook"
+        v-on:update-book="update"
+        v-for="book in books"
+        v-bind:key="book._id"
+        :id="book._id"
+        :name="book.bookName"
+        :publisher="book.publisher"
+        :book="book"
+        :imageLink="book.imageLink"
+      />
+    </section>
   </div>
 </template>
 
 <script>
 const BASE_API_URL =
-  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us29.gitpod.io/";
+  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us30.gitpod.io/";
+
 import axios from "axios";
+import BookCard from "@/components/BookCard.vue";
 
 export default {
+  name: "Books",
+  components: { BookCard },
+
   created: async function () {
     let response = await axios.get(BASE_API_URL + "books");
     this.books = response.data;
@@ -57,30 +44,22 @@ export default {
       this.$emit("update-book", bookId);
     },
 
-    deleteBook: async function (bookId) {
-      let response = await axios.delete(BASE_API_URL + "books/" + bookId);
-      console.log(response);
-      this.refreshData();
-    },
-
     refreshData: async function () {
-      // call get all outfits api
       let response = await axios.get(BASE_API_URL + "books");
       this.books = response.data;
     },
 
-    // deleteBook: async function (bookId) {
-    //   if (
-    //     confirm(
-    //       "Are you sure you want to delete this outfit? Press OK to confirm"
-    //     )
-    //   ) {
-    //     // call delete api
-    //     await axios.deleteBook(BASE_API_URL + "books/" + bookId);
-    //     // refresh data list
-    //     this.refreshData();
-    //     alert("Delete Outfit Successful!");
-    //   }
+    deleteBook: async function (bookId) {
+      if (
+        confirm(
+          "Are you sure you want to delete this entry? Press OK to confirm"
+        )
+      ) {
+        await axios.delete(BASE_API_URL + "books/" + bookId);
+        this.refreshData();
+        alert("Delete Outfit Successful!");
+      }
+    },
   },
 };
 </script>

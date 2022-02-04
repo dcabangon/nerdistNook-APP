@@ -7,13 +7,13 @@
     </div>
     <div>
       <label>Publisher</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Seperate each ingredient with a comma"
-        v-model="publisher"
-      />
+      <input type="text" class="form-control" v-model="publisher" />
     </div>
+    <div>
+      <label>Image Link</label>
+      <input type="text" class="form-control" v-model="imageLink" />
+    </div>
+
     <button v-on:click="updateBook" class="my-3">Update</button>
   </div>
 </template>
@@ -21,7 +21,7 @@
 <script>
 // BE SURE TO CHANGE THE API TO THE HEROKU VERSION WHEN YOU DEPLOYED YOUR VUE PROJECT
 const BASE_API_URL =
-  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us29.gitpod.io/";
+  "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us30.gitpod.io/";
 import axios from "axios";
 export default {
   data: function () {
@@ -29,6 +29,7 @@ export default {
       id: "",
       bookName: "",
       publisher: "",
+      imageLink: "",
     };
   },
   created: async function () {
@@ -37,6 +38,7 @@ export default {
     this.bookName = book.bookName;
     this.publisher = book.publisher;
     this.id = book.id;
+    this.imageLink = book.imageLink;
   },
 
   props: ["bookId"],
@@ -46,6 +48,7 @@ export default {
       await axios.patch(BASE_API_URL + "books/" + this.bookId, {
         bookName: this.bookName,
         publisher: this.publisher,
+        imageLink: this.imageLink,
       });
       this.$emit("book-updated");
     },
