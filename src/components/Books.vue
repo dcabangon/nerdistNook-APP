@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <!-- <h1>Books</h1> -->
     <section class="books">
       <Search
@@ -8,7 +8,7 @@
         v-on:search-book="search"
       />
       <b-row>
-        <BookCard
+        <BookCard class="my-3"
           v-on:delete-book="deleteBook"
           v-on:update-book="update"
           v-for="book in books"
@@ -19,6 +19,9 @@
           :book="book"
           :imageLink="book.imageLink"
           :rating="book.rating"
+          :writer="book.writer"
+          :issueNumber="book.issueNumber"
+          :review="book.review"
         />
       </b-row>
     </section>
@@ -43,6 +46,7 @@ export default {
   data: function () {
     return {
       books: [],
+      page: "Books"
     };
   },
 
@@ -86,4 +90,6 @@ export default {
 .search-margin {
   margin-top: 20px;
 }
+
+
 </style>

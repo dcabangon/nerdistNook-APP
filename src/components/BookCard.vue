@@ -11,9 +11,10 @@
         </b-col>
         <b-col>
           <b-card-body :title="name">
-            <b-card-text style="max-height: 120px; text-overflow: ellipsis; overflow: hidden;">
-              This is a wider card with supporting text as a natural lead-in to
-              additional content. This content is a little bit longer.
+            <b-card-text class="my-0"><b>Issue:</b> {{book.issueNumber}}</b-card-text>
+            <b-card-text class="my-0"><b>Publisher:</b> {{book.publisher}}</b-card-text>
+            <b-card-text  class="my-0" style="max-height: 70px; text-overflow: ellipsis; overflow: hidden;">
+            <b>Review:</b><br>{{book.review}}
             </b-card-text>
             <div>
               <b-form-rating
@@ -49,7 +50,7 @@ import axios from "axios";
 
 export default {
   name: "BookCard",
-  props: ["book", "name", "imageLink", "bookID", 'rating'],
+  props: ["book", "name", "imageLink", "bookID", 'rating', 'publisher', 'review', 'issueNumber'],
 
   created: async function () {
     let response = await axios.get(BASE_API_URL + "books");

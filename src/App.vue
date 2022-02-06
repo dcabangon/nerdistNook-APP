@@ -1,10 +1,12 @@
 
 <template>
-  <div>
+  <div class="main">
     <div>
       <!-- NAVBAR -->
       <b-navbar toggleable="lg" type="dark" style="background: red">
-        <b-navbar-brand class="header-padding" href="#">NERDISTNOOK</b-navbar-brand>
+        <b-navbar-brand class="header-padding" href="#"
+          >NERDISTNOOK</b-navbar-brand
+        >
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -27,7 +29,11 @@
       </b-navbar>
       <!-- END OF NAV BAR -->
       <b-container>
-        <Books v-if="page === 'books'" v-on:update-book="editBook" ref="bookComponent"/>
+        <Books
+          v-if="page === 'books'"
+          v-on:update-book="editBook"
+          ref="bookComponent"
+        />
         <AddBook
           v-if="page === 'add'"
           v-on:new-book-created="onNewBookCreated"
@@ -89,8 +95,11 @@ export default {
 </script>
 
 <style scoped>
+.header-padding {
+  padding-left: 10px;
+}
 
-.header-padding{
-  padding-left:10px
+.main{
+ background-image:url('./assets/background.png');
 }
 </style>

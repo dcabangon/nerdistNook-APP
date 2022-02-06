@@ -5,14 +5,27 @@
       <label>Book Name</label>
       <input type="text" v-model="bookName" class="form-control" />
     </div>
+
+    <div>
+      <label>Issue</label>
+      <input type="text" v-model="issueNumber" class="form-control" />
+    </div>
+  
     <div>
       <label>Publisher</label>
-      <input type="text" class="form-control" v-model="publisher" />
+      <input type="text" v-model="publisher" class="form-control" />
     </div>
+    
+    <div>
+      <label>Review</label>
+      <input type="text" v-model="review" class="form-control" />
+    </div>
+   
     <div>
       <label>Image Link</label>
-      <input type="text" class="form-control" v-model="imageLink" />
+      <input type="text" v-model="imageLink" class="form-control" />
     </div>
+   
     <div>
       <label>Rating</label>
       <b-form-rating
@@ -30,6 +43,7 @@
 // BE SURE TO CHANGE THE API TO THE HEROKU VERSION WHEN YOU DEPLOYED YOUR VUE PROJECT
 import { BASE_API_URL } from "@/env-vars";
 import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -37,7 +51,9 @@ export default {
       bookName: "",
       publisher: "",
       imageLink: "",
-      rating:""
+      rating: "",
+      issueNumber: "",
+      review: "",
     };
   },
   created: async function () {
@@ -48,6 +64,8 @@ export default {
     this.id = book.id;
     this.imageLink = book.imageLink;
     this.rating = book.rating;
+    this.issueNumber = book.issueNumber;
+    this.review = book.review;
   },
 
   props: ["bookId"],
@@ -59,6 +77,8 @@ export default {
         publisher: this.publisher,
         imageLink: this.imageLink,
         rating: this.rating,
+        issueNumber: this.issueNumber,
+        review: this.review,
       });
       this.$emit("book-updated");
     },
@@ -67,11 +87,9 @@ export default {
 </script>
 
 <style scoped>
-
-.margin-form{
+.margin-form {
   margin-top: 50px;
   margin-left: 300px;
   margin-right: 300px;
 }
-
 </style>
