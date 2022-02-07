@@ -11,7 +11,7 @@
           <b-button
             size="md"
             text="Button"
-            variant="success"
+            variant="warning"
             v-on:click="search()"
             >Search</b-button
           >

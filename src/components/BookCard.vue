@@ -1,6 +1,6 @@
 <template>
   <b-col cols="4" class="margin-card">
-    <b-card no-body class="overflow-hidden card-hover" style="max-width: 540px">
+    <b-card no-body class="overflow-hidden card-hover" style="max-width: 550px">
       <b-row no-gutters>
         <b-col>
           <b-card-img
@@ -26,7 +26,7 @@
             </div>
             <button
               v-on:click="update(book._id)"
-              class="btn btn-primary btn-sm mx-1"
+              class="btn btn-warning btn-sm mx-1"
             >
               Edit
             </button>

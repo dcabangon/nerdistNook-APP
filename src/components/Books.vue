@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="card-div">
     <!-- <h1>Books</h1> -->
     <section class="books">
       <Search
@@ -91,7 +91,10 @@ export default {
   margin-top: 20px;
 }
 
-
+.card-div{
+  height: 100%;
+  /* overflow-y: auto; */
+}
 
 
 </style>

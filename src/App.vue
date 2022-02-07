@@ -5,7 +5,7 @@
       <!-- NAVBAR -->
       <b-navbar toggleable="lg" type="dark" style="background: red">
         <b-navbar-brand class="header-padding" href="#"
-          >NERDISTNOOK</b-navbar-brand
+          ><img src="./assets/NN-Logo.png" alt="" class="logo"></b-navbar-brand
         >
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -73,9 +73,8 @@ export default {
     goBooks: function () {
       this.page = "books";
       setTimeout(function () {
-         this.$refs.bookComponent.getBooks();
+        this.$refs.bookComponent.getBooks();
       }, 500);
-     
     },
     goAddBook: function () {
       this.page = "add";
@@ -104,5 +103,11 @@ export default {
 
 .main {
   background-image: url("./assets/background.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+.logo{
+  height: 60px;
 }
 </style>

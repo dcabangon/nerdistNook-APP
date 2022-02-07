@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addbook-div">
     <h1>Add Book</h1>
     <div>
       <label>Book Name</label>
@@ -84,3 +84,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.addbook-div{
+  height: 100vh;
+}
+</style>
