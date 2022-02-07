@@ -1,6 +1,6 @@
 <template>
   <b-col cols="4" class="margin-card">
-    <b-card no-body class="overflow-hidden" style="max-width: 540px">
+    <b-card no-body class="overflow-hidden card-hover" style="max-width: 540px">
       <b-row no-gutters>
         <b-col>
           <b-card-img
@@ -10,7 +10,7 @@
           ></b-card-img>
         </b-col>
         <b-col>
-          <b-card-body :title="name">
+          <b-card-body :title="name" >
             <b-card-text class="my-0"><b>Issue:</b> {{book.issueNumber}}</b-card-text>
             <b-card-text class="my-0"><b>Publisher:</b> {{book.publisher}}</b-card-text>
             <b-card-text  class="my-0" style="max-height: 70px; text-overflow: ellipsis; overflow: hidden;">
@@ -89,5 +89,10 @@ export default {
 }
 .margin-card{
   margin-top: 10px;
+}
+
+.card-hover:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* background: whitesmoke; */
 }
 </style> 

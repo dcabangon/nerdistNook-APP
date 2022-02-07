@@ -71,9 +71,9 @@ export default {
         alert("Delete Outfit Successful!");
       }
     },
-    search: async function (bookName) {
+    search: async function (data) {
       let response = await axios.get(
-        BASE_API_URL + "books?bookName=" + bookName
+        BASE_API_URL + "books?bookName=" + data.bookName + "&publisher=" + data.publisher
       );
       this.books = response.data;
       //console.log(bookName)
@@ -90,6 +90,8 @@ export default {
 .search-margin {
   margin-top: 20px;
 }
+
+
 
 
 </style>
