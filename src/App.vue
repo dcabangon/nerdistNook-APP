@@ -72,7 +72,10 @@ export default {
   methods: {
     goBooks: function () {
       this.page = "books";
-      this.$refs.bookComponent.getBooks();
+      setTimeout(function () {
+         this.$refs.bookComponent.getBooks();
+      }, 500);
+     
     },
     goAddBook: function () {
       this.page = "add";
@@ -99,7 +102,7 @@ export default {
   padding-left: 10px;
 }
 
-.main{
- background-image:url('./assets/background.png');
+.main {
+  background-image: url("./assets/background.png");
 }
 </style>
