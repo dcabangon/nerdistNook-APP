@@ -1,6 +1,6 @@
 <template>
   <div class="aboutus-div">
-    <h1>About Us</h1>
+    <h1 class="my-3">About Us</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget massa
       risus. Mauris tincidunt libero eu sem imperdiet, id elementum enim
@@ -62,5 +62,12 @@
 <style>
 .aboutus-div{
   height: 100vh;
+  background: white;
+  padding: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  opacity: 70%;
 }
+
+
 </style>

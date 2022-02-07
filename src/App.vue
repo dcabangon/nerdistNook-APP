@@ -19,7 +19,7 @@
               >Books</b-nav-item
             >
             <b-nav-item v-on:click="goAddBook" class="nav-link"
-              >Add New</b-nav-item
+              >Add Book</b-nav-item
             >
             <b-nav-item v-on:click="goAboutUs" class="nav-link"
               >About</b-nav-item
