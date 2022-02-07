@@ -1,1 +1,1 @@
-export const BASE_API_URL = "https://git.heroku.com/rnmc-proj2-api.git"
+export const BASE_API_URL = "https://rnmc-proj2-api.herokuapp.com/"
