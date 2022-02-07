@@ -1,1 +1,1 @@
-export const BASE_API_URL = "https://3000-dcabangon-nerdistnookapi-7e4pnbeivwk.ws-us30.gitpod.io/"
+export const BASE_API_URL = "https://git.heroku.com/rnmc-proj2-api.git"
