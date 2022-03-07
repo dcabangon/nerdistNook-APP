@@ -1,42 +1,83 @@
 <template>
   <div class="editbook-div">
     <div class="margin-form">
+      
+      <b-alert variant="success" v-model="isSuccess" dismissible
+        >Successfully added a book</b-alert
+      >
+      <b-alert variant="error" v-model="isError" dismissible>Error</b-alert>
       <h1>Edit Book</h1>
-      <div>
-        <label>Book Name</label>
-        <input type="text" v-model="bookName" class="form-control" />
-      </div>
+      <form v-on:submit.prevent="updateBook">
+        <div>
+          <label>Book Name<span style="color: red">*</span></label>
+          <input type="text" v-model="bookName" class="form-control" required />
+        </div>
+        <div>
+          <label>Issue/Volume#<span style="color: red">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="..."
+            v-model="issueNumber"
+            required
+          />
+        </div>
+        <div>
+          <label>Book Type<span style="color: red">*</span></label>
+          <select class="form-control" v-model="bookType" required>
+            <option value="" disabled>Select a type</option>
+            <option value="fiction">Fiction</option>
+            <option value="non-fiction">Non Fiction</option>
+          </select>
+        </div>
+        <div>
+          <label>Publisher<span style="color: red">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="..."
+            v-model="publisher"
+            required
+          />
+        </div>
+        <div>
+          <label>Review</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="..."
+            v-model="review"
+          />
+          <div>
+            <label>Image Link</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="..."
+              v-model="imageLink"
+            />
+          </div>
+        </div>
 
-      <div>
-        <label>Issue</label>
-        <input type="text" v-model="issueNumber" class="form-control" />
-      </div>
+        <div>
+          <label for="tags">Genre</label>
+          <b-form-tags
+            input-id="tags-basic"
+            v-model="genre"
+            remove-on-delete
+          ></b-form-tags>
+        </div>
 
-      <div>
-        <label>Publisher</label>
-        <input type="text" v-model="publisher" class="form-control" />
-      </div>
-
-      <div>
-        <label>Review</label>
-        <input type="text" v-model="review" class="form-control" />
-      </div>
-
-      <div>
-        <label>Image Link</label>
-        <input type="text" v-model="imageLink" class="form-control" />
-      </div>
-
-      <div>
-        <label>Rating</label>
-        <b-form-rating
-          v-model="rating"
-          variant="warning"
-          class="mb-2"
-        ></b-form-rating>
-      </div>
-
-      <button v-on:click="updateBook" class="my-3">Update</button>
+        <div>
+          <label>Rating</label>
+          <b-form-rating
+            v-model="rating"
+            variant="warning"
+            class="mb-2"
+          ></b-form-rating>
+        </div>
+        <button type="submit" class="my-3 btn btn-warning">Update</button>
+      </form>
     </div>
   </div>
 </template>
@@ -56,6 +97,10 @@ export default {
       rating: "",
       issueNumber: "",
       review: "",
+      bookType: "",
+      genre: [],
+      isSuccess: false,
+      isError: false,
     };
   },
   created: async function () {
@@ -74,15 +119,20 @@ export default {
 
   methods: {
     updateBook: async function () {
-      await axios.patch(BASE_API_URL + "books/" + this.bookId, {
+      var result = await axios.patch(BASE_API_URL + "books/" + this.bookId, {
         bookName: this.bookName,
         publisher: this.publisher,
         imageLink: this.imageLink,
         rating: this.rating,
         issueNumber: this.issueNumber,
         review: this.review,
+        bookType: this.bookType,
+        genre: this.genre,
       });
-      this.$emit("book-updated");
+
+      if (result.status == 200) {
+        this.isSuccess = true;
+      } else this.error = true;
     },
   },
 };
@@ -94,7 +144,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .margin-form {

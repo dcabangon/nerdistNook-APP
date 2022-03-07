@@ -66,7 +66,6 @@
   padding: 5px;
   padding-left: 4px;
   padding-right: 4px;
-  opacity: 70%;
 }
 
 

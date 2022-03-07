@@ -1,8 +1,10 @@
 <template>
   <div class="addbook-div">
     <div class="addbook-form">
+      <b-alert variant="success" v-model="isSuccess" dismissible>Successfully added a book</b-alert>
+      <b-alert variant="error" v-model="isError" dismissible>Error</b-alert>
       <h1>Add Book</h1>
-      <form v-on:submit="addNew">
+      <form v-on:submit.prevent="addNew">
         <div>
           <label>Book Name<span style="color: red">*</span></label>
           <input type="text" v-model="bookName" class="form-control" required />
@@ -89,11 +91,13 @@ export default {
       rating: "",
       bookType: "",
       genre:[],
+      isSuccess:false,
+      isError:false,
     };
   },
   methods: {
     addNew: async function () {
-      await axios.post(BASE_API_URL + "books", {
+      var result = await axios.post(BASE_API_URL + "books", {
         bookName: this.bookName,
         publisher: this.publisher,
         imageLink: this.imageLink,
@@ -103,7 +107,13 @@ export default {
         bookType: this.bookType,
         genre: this.genre,
       });
-      this.$emit("new-book-created");
+
+      if (result.status == 200){
+        this.isSuccess = true
+      }
+      else (
+        this.error = true
+      )
     },
   },
 };
