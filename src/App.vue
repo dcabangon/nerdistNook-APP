@@ -3,7 +3,7 @@
   <div class="main">
     <div>
       <!-- NAVBAR -->
-      <b-navbar toggleable="lg" type="dark" style="background: red">
+      <b-navbar toggleable="lg" type="dark" style="background: black">
         <b-navbar-brand class="header-padding" href="#"
           ><img src="./assets/NN-Logo.png" alt="" class="logo"></b-navbar-brand
         >
@@ -14,14 +14,14 @@
           <b-navbar-nav>
             <b-nav-item
               v-on:click="goBooks"
-              class="nav-link active"
+              class="nav-link active" v-bind:class="{'current-page': page=='books'}"
               aria-current="page"
               >Books</b-nav-item
             >
-            <b-nav-item v-on:click="goAddBook" class="nav-link"
+            <b-nav-item v-on:click="goAddBook" class="nav-link" v-bind:class="{'current-page': page=='add'}"
               >Add Book</b-nav-item
             >
-            <b-nav-item v-on:click="goAboutUs" class="nav-link"
+            <b-nav-item v-on:click="goAboutUs" class="nav-link" v-bind:class="{'current-page': page=='about-us'}"
               >About</b-nav-item
             >
           </b-navbar-nav>
@@ -110,4 +110,9 @@ export default {
 .logo{
   height: 60px;
 }
+
+.current-page a{
+  border-bottom: 1px solid white;
+}
+
 </style>
